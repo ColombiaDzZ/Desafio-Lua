@@ -1,5 +1,8 @@
+local ansicolorsx = require("libs.ansicolorsx")
+
 -- Habilitar UTF-8 no Terminal
 os.execute("chcp 65001")
+
 
 -- Criatura
 local monstername = "Charmander"
@@ -12,16 +15,16 @@ local sound = "Ruuuaannw"
 
 -- Atributos
 local attackAttribute = 4
-local specialAttack = 4
+local specialAttack = 6
 local defenseAttribute = 3
-local specialDefense = 3
-local lifeAttribute = 3
-local speedAttribute = 4
+local specialDefense = 5
+local lifeAttribute = 10
+local speedAttribute = 5
 
 -- Função que recebe um atributo e nos retorna uma barra
 local function getProgessbar(attribute)
-    local fullChar = "🟥"
-    local emptyChar = "⬜"
+    local fullChar = "▰"
+    local emptyChar = "▱"
 
     local result = ""
     for i = 1, 15, 1 do
@@ -50,12 +53,12 @@ print("| Som: " .. sound)
 print("| ")
 print("| Atributos Charmander: ")
 print("| ")
-print("|    Ataque:          " .. getProgessbar(attackAttribute))
-print("|    Ataque Especial: " .. getProgessbar(specialAttack))
-print("|    Defesa:          " .. getProgessbar(defenseAttribute))
-print("|    Defesa Especial: " .. getProgessbar(specialDefense))
-print("|    Vida:            " .. getProgessbar(lifeAttribute))
-print("|    Velocidade:      " .. getProgessbar(speedAttribute))
+print(ansicolorsx(string.format("|    Ataque: %s","%{green underline}" .. getProgessbar(attackAttribute) .. "%{reset}")))
+print(ansicolorsx(string.format("|    Ataque Especial: %s","%{green underline}" .. getProgessbar(specialAttack) .. "%{reset}")))
+print(ansicolorsx(string.format("|    Defesa: %s","%{white underline}" .. getProgessbar(defenseAttribute) .. "%{reset}")))
+print(ansicolorsx(string.format("|    Defesa Especial: %s","%{white underline}" .. getProgessbar(specialDefense) .. "%{reset}")))
+print(ansicolorsx(string.format("|    Vida: %s","%{red underline}" .. getProgessbar(lifeAttribute) .. "%{reset}")))
+print(ansicolorsx(string.format("|    Velocidade: %s","%{cyan underline}" .. getProgessbar(speedAttribute) .. "%{reset}")))
 print("| ")
 print("| ")
 print("|    Um guia rápido sobre o nosso amiguinho Charmander, siga para mais!")
